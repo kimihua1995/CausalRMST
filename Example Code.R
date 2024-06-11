@@ -3,7 +3,7 @@ library(nnet)
 library(Rsolnp)
 library(survRM2)
 library(geex)
-source("source_CW_RMST.R")
+source("CausalRMST.R")
 
 
 
