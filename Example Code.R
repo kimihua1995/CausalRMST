@@ -3,7 +3,6 @@ library(nnet)
 library(Rsolnp)
 library(survRM2)
 library(geex)
-setwd("/Users/HuaKimi/Library/CloudStorage/Box-Box/ICSA2024 short course/Lab Session")
 source("source_CW_RMST.R")
 
 
