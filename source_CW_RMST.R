@@ -173,8 +173,6 @@ W.AG.Est <- function(df, p, varX, gf, tau){
   dfx <- t(apply(df[,varX], 1, gf))
   mdf0 <- cbind(1,0,dfx, 0*dfx)
   mdf1 <- cbind(1,1,dfx, 1*dfx)
-  #mdf0 <- cbind(1,0,df[,paste0("X",1:nX)], 0*df[,paste0("X",1:nX)])
-  #mdf1 <- cbind(1,1,df[,paste0("X",1:nX)], 1*df[,paste0("X",1:nX)])
   m0 <- as.matrix(mdf0)%*%matrix(gamma,ncol = 1); m0 <- as.vector(m0)
   m1 <- as.matrix(mdf1)%*%matrix(gamma,ncol = 1); m1 <- as.vector(m1)
   
@@ -186,18 +184,10 @@ W.AG.Est <- function(df, p, varX, gf, tau){
                         mu1 = c(m1[A==1], m1[A==0]),
                         mu0 = c(m0[A==1], m0[A==0]))
   
-  dat_mod <- data.frame(p = c(p[A==1], p[A==0]),
-                        w = c(w1, w0),
-                        Y = c(y1, y0),
-                        A = c(A[A==1], A[A==0]),
-                        mu1 = 8,
-                        mu0 = 5)
-  
-  
   res <- geex::m_estimate(
     estFUN = m_fun,
     data = dat_mod,
-    root_control = setup_root_control(start = c(1,1,0,0))
+    root_control = setup_root_control(start = c(0.5,0.5,0.5,0.5))
   )
   
   coef <- coef(res)
